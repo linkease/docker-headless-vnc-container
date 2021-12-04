@@ -32,6 +32,10 @@ ENV HOME=/headless \
     VNC_VIEW_ONLY=false
 WORKDIR $HOME
 
+RUN apt update && apt install -y apt-transport-https ca-certificates
+
+COPY ./src/sources.list /etc/apt/sources.list
+
 ### Add all install scripts for further steps
 ADD ./src/common/install/ $INST_SCRIPTS/
 ADD ./src/ubuntu/install/ $INST_SCRIPTS/
